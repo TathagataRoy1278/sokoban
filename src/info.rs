@@ -72,10 +72,12 @@ const CH_WALL: char = '#';
 
 pub const DIRECTIONS: [usize; 4] = [0, 1, 2, 3];
 
+#[derive(Clone)]
 pub struct State {
     pub player: TileIndex,
     pub boxes_pos: Vec<TileIndex>,
     pub board: Board,
+    pub zhash: u64
 }
 
 #[derive(Clone, Debug)]
@@ -264,5 +266,6 @@ pub fn get_state(game: &Game, board: &Board) -> State {
         player: player,
         boxes_pos: boxes,
         board: board.clone(),
+        zhash: 0
     }
 }

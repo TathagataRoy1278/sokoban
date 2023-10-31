@@ -2,6 +2,7 @@ use std::usize::MAX;
 
 use crate::info::{Board, Game, TileIndex, BOX, DIRECTIONS, FLOOR};
 
+#[derive(Clone, Debug)]
 pub struct ReachableTiles {
     calculated: bool,
     min_reachable_tile: TileIndex,
@@ -44,12 +45,11 @@ pub fn clear_reach(reach: &mut ReachableTiles, board: &Board) {
     }
 }
 
-pub fn calc_reach(reach: &mut ReachableTiles, game: &Game, start_tile: &TileIndex) -> usize {
+pub fn calc_reach(reach: &mut ReachableTiles, game: &Game, board: &Board, start_tile: &TileIndex) -> usize {
     if reach.calc_counter >= MAX - 2 {
         clear_reach(reach, &game.board);
     }
 
-    let board = &game.board;
     let start_tile = *start_tile;
 
     reach.calc_counter += 2;
